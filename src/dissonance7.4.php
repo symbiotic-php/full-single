@@ -3152,7 +3152,7 @@ namespace Dissonance\Apps {
     use Dissonance\App\AppConfig;
     use Dissonance\App\Application;
     use Dissonance\Container\CachedContainerInterface;
-    use Dissonance\Http\MiddlewaresSupport\MiddlewaresDispatcher;
+    use Dissonance\Http\Middleware\MiddlewaresDispatcher;
     use Dissonance\Packages\Contracts\PackagesRepositoryInterface;
     use Dissonance\Packages\PackagesRepository;
     use Dissonance\Routing\AppsRoutesRepository;
@@ -6933,7 +6933,7 @@ namespace Dissonance\Http\Cookie {
     use Psr\Http\Server\MiddlewareInterface;
     use Psr\Http\Server\RequestHandlerInterface;
     use Dissonance\Contracts\CoreInterface;
-    use Dissonance\Http\MiddlewaresSupport\MiddlewaresDispatcher;
+    use Dissonance\Http\Middleware\MiddlewaresDispatcher;
     use Dissonance\Container\ServiceProvider;
 
     interface CookiesInterface extends \ArrayAccess
@@ -7223,15 +7223,15 @@ namespace Dissonance\HttpKernel {
     use Dissonance\Contracts\CoreInterface;
     use Dissonance\Runner;
     use Dissonance\Packages\AssetFileRequestMiddleware;
-    use Dissonance\Http\MiddlewaresSupport\MiddlewaresHandler;
-    use Dissonance\Http\MiddlewaresSupport\MiddlewareCallback;
+    use Dissonance\Http\Middleware\MiddlewaresHandler;
+    use Dissonance\Http\Middleware\MiddlewareCallback;
     use Psr\Http\Message\ResponseInterface;
     use Psr\Http\Message\ServerRequestInterface;
     use Psr\Http\Message\ResponseFactoryInterface;
     use Dissonance\Http\UriHelper;
     use Dissonance\RequestPrefixMiddleware\Middleware;
-    use Dissonance\Http\MiddlewaresSupport\MiddlewaresDispatcher;
-    use Dissonance\Http\MiddlewaresSupport\MiddlewaresCollection;
+    use Dissonance\Http\Middleware\MiddlewaresDispatcher;
+    use Dissonance\Http\Middleware\MiddlewaresCollection;
     use Dissonance\Contracts\Http\HttpKernelInterface;
     use Dissonance\Http\ResponseSender;
     use Dissonance\View\View;
@@ -7503,7 +7503,7 @@ namespace Dissonance\HttpKernel {
     }
 }
 
-namespace Dissonance\Http\MiddlewaresSupport {
+namespace Dissonance\Http\Middleware {
 
     use Psr\Http\Message\ResponseInterface;
     use Psr\Http\Message\ServerRequestInterface;
@@ -7512,7 +7512,7 @@ namespace Dissonance\Http\MiddlewaresSupport {
 
     /**
      * Class MiddlewaresDispatcher
-     * @package Dissonance\Http\MiddlewaresSupport
+     * @package Dissonance\Http\Middleware
      * @category Dissonance\Http
      *
      * @notice The use of functions as middleware is made exclusively for Micro assembly
@@ -7641,7 +7641,7 @@ namespace Dissonance\Http\MiddlewaresSupport {
 
     /**
      * Class MiddlewareHandler
-     * @package Dissonance\Http\MiddlewaresSupport
+     * @package Dissonance\Http\Middleware
      * @category Dissonance\Http
      *
      * @author shadowhand https://github.com/shadowhand
@@ -7743,7 +7743,7 @@ namespace Dissonance\Http\MiddlewaresSupport {
 
     /**
      * Class MiddlewareHandler
-     * @package Dissonance\Http\MiddlewaresSupport
+     * @package Dissonance\Http\Middleware
      * @category Dissonance\Http
      *
      * @author shadowhand https://github.com/shadowhand
@@ -7925,7 +7925,7 @@ namespace Dissonance\RequestPrefixMiddleware {
     use Psr\Http\Message\ServerRequestInterface;
     use Psr\Http\Server\MiddlewareInterface;
     use Psr\Http\Server\RequestHandlerInterface;
-    use Dissonance\Http\MiddlewaresSupport\MiddlewaresDispatcher;
+    use Dissonance\Http\Middleware\MiddlewaresDispatcher;
     use Dissonance\Container\ServiceProvider;
 
 
@@ -7967,7 +7967,7 @@ namespace Dissonance\Packages {
     use Psr\Http\Server\MiddlewareInterface;
     use Psr\Http\Message\ResponseFactoryInterface;
     use Dissonance\Contracts\CoreInterface;
-    use Dissonance\Http\MiddlewaresSupport\MiddlewaresDispatcher;
+    use Dissonance\Http\Middleware\MiddlewaresDispatcher;
     use function _DS\app;
     use Dissonance\Contracts\BootstrapInterface;
     use Psr\SimpleCache\CacheInterface;

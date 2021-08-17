@@ -12,7 +12,7 @@
     "dissonance web"
   ],
   "require": {
-    "php": ">=7.2.3",
+    "php": ">=7.1.*",
     "nyholm/psr7": ">=1.3.2",
     "psr/http-server-handler": "1.0.*",
     "psr/http-server-middleware": "1.0.1",
