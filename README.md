@@ -81,6 +81,9 @@ $config  = [
     'base_path' => $basePath, // базовая папка проекта
     'assets_prefix' => '/assets',
     'storage_path' =>  $basePath . '/storage', // Если убрать то кеш отключится
+    'packages_paths' => [
+        $basePath . '/vendor', // Папка для приложений
+    ],
     'bootstrappers' => [
         \Dissonance\Develop\Bootstrap\DebugBootstrap::class,/// debug only
         \Dissonance\Bootstrap\EventBootstrap::class,
