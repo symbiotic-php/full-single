@@ -1,6 +1,5 @@
 <?php
-$basePath = dirname(dirname(dirname(__DIR__)));
-
+$basePath = dirname(__DIR__,4);
 return [
     'debug' => true,
     'symbiosis' => true, // Режим симбиоза, если включен и фреймворк не найдет обработчик,
@@ -14,22 +13,21 @@ return [
         $basePath . '/vendor', // Папка для приложений
     ],
     'bootstrappers' => [
-        \Dissonance\Develop\Bootstrap\DebugBootstrap::class,// Приложение develop
-        \Dissonance\Bootstrap\EventBootstrap::class,
+        \Dissonance\Develop\Bootstrap\DebugBootstrap::class,/// debug only
+        \Dissonance\Core\Bootstrap\EventBootstrap::class,
         \Dissonance\SimpleCacheFilesystem\Bootstrap::class,
-        \Dissonance\PackagesLoaderFilesystem\Bootstrap::class,
+        \Dissonance\Packages\PackagesLoaderFilesystemBootstrap::class,
         \Dissonance\Packages\PackagesBootstrap::class,
         \Dissonance\Packages\ResourcesBootstrap::class,
         \Dissonance\Apps\Bootstrap::class,
         \Dissonance\Http\Bootstrap::class,
-        \Dissonance\HttpKernel\Bootstrap::class,
-        \Dissonance\CacheRouting\Bootstrap::class,
-        \Dissonance\ViewBlade\Bootstrap::class,
+        \Dissonance\Http\Kernel\Bootstrap::class,
+        \Dissonance\View\Blade\Bootstrap::class,
     ],
     'providers' => [
         \Dissonance\Http\Cookie\CookiesProvider::class,
-       \Dissonance\RequestPrefixMiddleware\Provider::class,
-        \Dissonance\SettlementsRouting\Provider::class,
+        \Dissonance\Routing\SettlementsRoutingProvider::class,
+        \Dissonance\Routing\CacheRoutingProvider::class,
         \Dissonance\Session\NativeProvider::class,
     ],
     'providers_exclude' => [

@@ -85,21 +85,20 @@ $config  = [
         $basePath . '/vendor', // Папка для приложений
     ],
     'bootstrappers' => [
-        \Dissonance\Develop\Bootstrap\DebugBootstrap::class,/// debug only
-        \Dissonance\Bootstrap\EventBootstrap::class,
-        \Dissonance\SimpleCacheFilesystem\Bootstrap::class,
-        \Dissonance\PackagesLoaderFilesystem\Bootstrap::class,
-        \Dissonance\Packages\PackagesBootstrap::class,
-        \Dissonance\Packages\ResourcesBootstrap::class,
-        \Dissonance\Apps\Bootstrap::class,
-        \Dissonance\Http\Bootstrap::class,
-        \Dissonance\HttpKernel\Bootstrap::class,
-        \Dissonance\CacheRouting\Bootstrap::class,
-        \Dissonance\ViewBlade\Bootstrap::class,
+              \Dissonance\Develop\Bootstrap\DebugBootstrap::class,/// debug only
+              \Dissonance\Core\Bootstrap\EventBootstrap::class,
+              \Dissonance\SimpleCacheFilesystem\Bootstrap::class,
+              \Dissonance\Packages\PackagesLoaderFilesystemBootstrap::class,
+              \Dissonance\Packages\PackagesBootstrap::class,
+              \Dissonance\Packages\ResourcesBootstrap::class,
+              \Dissonance\Apps\Bootstrap::class,
+              \Dissonance\Http\Bootstrap::class,
+              \Dissonance\Http\Kernel\Bootstrap::class,
+              \Dissonance\View\Blade\Bootstrap::class,
     ],
     'providers' => [
         \Dissonance\Http\Cookie\CookiesProvider::class,
-        \Dissonance\SettlementsRouting\Provider::class,
+        \Dissonance\Routing\SettlementsRoutingProvider::class,
         \Dissonance\Session\NativeProvider::class,
     ],
     'providers_exclude' => [
@@ -108,10 +107,10 @@ $config  = [
 ];
 
 // Базовая постройка контейнера
-$core = new \Dissonance\Core($config);
+$core = new \Dissonance\Core\Core($config);
 // Или через билдер с кешем
 $cache = new Dissonance\SimpleCacheFilesystem\SimpleCache($basePath . '/storage/cache/core');
-$core = (new \Dissonance\CachedContainer\ContainerBuilder($cache))
+$core = (new \Dissonance\Core\ContainerBuilder($cache))
     ->buildCore($config);
 
 // Запуск 
