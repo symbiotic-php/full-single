@@ -64,7 +64,7 @@ composer require symbiotic/full-single
  
  Если вы используете уже фреймворк, то необходимо включить режим симбиоза в конфиге
 ```php
-$config['symbiotic'] = true;
+$config['symbiosis'] = true;
 ```
 ##### Инициализация
 ```php
@@ -73,8 +73,8 @@ $basePath = dirname(__DIR__);// корневая папка проекта
 include_once $basePath. '/vendor/autoload.php';
 
 $config  = [
-    'debug' => true,
-    'symbiotic' => true, // Режим симбиоза, если включен и фреймворк не найдет обработчик,
+    'debug' => false,
+    'symbiosis' => true, // Режим симбиоза, если включен и фреймворк не найдет обработчик,
     // то он ничего не вернет и основной фреймворк смодет сам обработать запрос
     'default_host' => 'localhost',// для консоли , но ее пока нет
     'uri_prefix' => 'symbiotic', // Префикс в котором работет фреймворк, если пустой то работае от корня
@@ -85,7 +85,7 @@ $config  = [
         $basePath . '/vendor', // Папка для приложений
     ],
     'bootstrappers' => [
-              \Symbiotic\Develop\Bootstrap\DebugBootstrap::class,/// debug only
+            //\Symbiotic\Develop\Bootstrap\DebugBootstrap::class,/// debug with develop app only
               \Symbiotic\Core\Bootstrap\EventBootstrap::class,
               \Symbiotic\SimpleCacheFilesystem\Bootstrap::class,
               \Symbiotic\Packages\PackagesLoaderFilesystemBootstrap::class,
@@ -183,7 +183,7 @@ $core->run();
           // Можно указать что то одно или все вместе
           "public_path": "assets", // Папка со статикой, относительно корня пакета 
           "resources_path": "my_resources", // Папка c шаблонами и другими файлами, не доступны через http
-          // можно прокинуть в веб при необходимости через специальный объект доступа к ресурсам
+          // можно прокинуть в веб при необходимости через специальный пакет доступа к ресурсам
     }
   }
 }

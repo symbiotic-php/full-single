@@ -937,15 +937,15 @@ namespace Symbiotic\Core\Support { use ArrayAccess, InvalidArgumentException, Tr
  return $app->make($class); });return (new MiddlewaresCollection(\_DS\event($dispatcher)->factoryGroup(MiddlewaresDispatcher::GROUP_GLOBAL)))->process($request,$app->make(RoutingHandler::class));}function response(int $code = 200, \Throwable $exception = null): ResponseInterface { $app = $this->app; $response = $app[ResponseFactoryInterface::class]->createResponse($code);if($code >= 400){
  $path = $app('templates_package', 'ui_http_kernel') . '::';if($exception && config('debug')){
  $view = View::make($path . "exception", ['error'=>$exception]); } else { $view = View::make($path . "error", ['response'=>$response]); } $response->getBody()->write($view->__toString());}return $response;}}
- class HttpRunner extends Runner { function isHandle(): bool { return $this->app['env'] === 'web';}function run(): void { $app = $this->app; $symbiotic = \_DS\config('symbiotic', false); try { $request_interface = ServerRequestInterface::class; $request = $app[PsrHttpFactory::class]->createServerRequestFromGlobals(); $app->instance($request_interface,$request, 'request'); $app->alias($request_interface, get_class($request)); $base_uri = $this->prepareBaseUrl($request); $app['base_uri'] = $base_uri; $app['original_request'] = $request; $request = $request->withUri((new UriHelper())->deletePrefix($base_uri,$request->getUri())); $handler = $app['events']->dispatch(new PreloadKernelHandler($app->make(HttpKernelInterface::class))); $handler->prepend(new RequestPrefixMiddleware($app('config::uri_prefix', null))); $handler->append(new MiddlewareCallback(function (ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface { if ($handler instanceof MiddlewaresHandler){
+ class HttpRunner extends Runner { function isHandle(): bool { return $this->app['env'] === 'web';}function run(): void { $app = $this->app; $symbiosis = \_DS\config('symbiosis', false); try { $request_interface = ServerRequestInterface::class; $request = $app[PsrHttpFactory::class]->createServerRequestFromGlobals(); $app->instance($request_interface,$request, 'request'); $app->alias($request_interface, get_class($request)); $base_uri = $this->prepareBaseUrl($request); $app['base_uri'] = $base_uri; $app['original_request'] = $request; $request = $request->withUri((new UriHelper())->deletePrefix($base_uri,$request->getUri())); $handler = $app['events']->dispatch(new PreloadKernelHandler($app->make(HttpKernelInterface::class))); $handler->prepend(new RequestPrefixMiddleware($app('config::uri_prefix', null))); $handler->append(new MiddlewareCallback(function (ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface { if ($handler instanceof MiddlewaresHandler){
  $real = $handler->getRealHandler();if($real instanceof HttpKernelInterface){
  $real->bootstrap();}}
- return $handler->handle($request); })); $response = $handler->handle($request);if(!$app('destroy_response', false) || !$symbiotic){
- $this->sendResponse($response);if($symbiotic){
+ return $handler->handle($request); })); $response = $handler->handle($request);if(!$app('destroy_response', false) || !$symbiosis){
+ $this->sendResponse($response);if($symbiosis){
  exit;}}
  } catch (\Throwable $e){
- if (!$symbiotic){
- $this->sendResponse($app[HttpKernelInterface::class]->response(500,$e));}}
+ if (!$symbiosis){
+ $this->sendResponse($app[HttpKernelInterface::class]->response(500,$e));exit;}}
  } static function closeOutputBuffers(int $targetLevel, bool $flush): void { $status = ob_get_status(true); $level = \count($status); $flags = \PHP_OUTPUT_HANDLER_REMOVABLE | ($flush ? \PHP_OUTPUT_HANDLER_FLUSHABLE : \PHP_OUTPUT_HANDLER_CLEANABLE); while ($level-- > $targetLevel && ($s = $status[$level]) && (!isset($s['del']) ? !isset($s['flags']) || ($s['flags'] & $flags) === $flags : $s['del'])){
  if ($flush){
  ob_end_flush(); } else { ob_end_clean();}}
