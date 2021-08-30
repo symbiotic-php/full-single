@@ -1,169 +1,96 @@
 <?php
 /**
  * Все свое ношу с собой, для работы без композера
+ * Методы очищены чтобы не было конфликтов 
  */
 namespace Psr\Container {
     if (!interface_exists(ContainerExceptionInterface::class)) {
-        interface ContainerExceptionInterface
-        {
-        }
+        interface ContainerExceptionInterface {}
     }
-
     if (!interface_exists(ContainerInterface::class)) {
-        interface ContainerInterface
-        {
-        }
+        interface ContainerInterface {}
     }
-
     if (!interface_exists(NotFoundExceptionInterface::class)) {
-        interface NotFoundExceptionInterface extends ContainerExceptionInterface
-        {
-        }
+        interface NotFoundExceptionInterface extends ContainerExceptionInterface {}
     }
-
 }
-
 namespace Psr\EventDispatcher {
-
     if (!interface_exists(EventDispatcherInterface::class)) {
-        interface EventDispatcherInterface
-        {
-        }
+        interface EventDispatcherInterface {}
     }
     if (!interface_exists(ListenerProviderInterface::class)) {
-        interface ListenerProviderInterface
-        {
-        }
+        interface ListenerProviderInterface {}
     }
     if (!interface_exists(StoppableEventInterface::class)) {
-        interface StoppableEventInterface
-        {
-        }
+        interface StoppableEventInterface {}
     }
-
 }
-
 namespace Psr\Http\Message {
-
     if (!interface_exists(RequestFactoryInterface::class)) {
-        interface RequestFactoryInterface
-        {
-        }
+        interface RequestFactoryInterface {}
     }
-
     if (!interface_exists(ResponseFactoryInterface::class)) {
-        interface ResponseFactoryInterface
-        {
-        }
+        interface ResponseFactoryInterface {}
     }
-
     if (!interface_exists(ServerRequestFactoryInterface::class)) {
-        interface ServerRequestFactoryInterface
-        {
-        }
+        interface ServerRequestFactoryInterface {}
     }
-
     if (!interface_exists(StreamFactoryInterface::class)) {
-        interface StreamFactoryInterface
-        {
-        }
+        interface StreamFactoryInterface {}
     }
-
     if (!interface_exists(UploadedFileFactoryInterface::class)) {
-        interface UploadedFileFactoryInterface
-        {
-        }
+        interface UploadedFileFactoryInterface {}
     }
-
     if (!interface_exists(UriFactoryInterface::class)) {
-        interface UriFactoryInterface
-        {
-        }
+        interface UriFactoryInterface {}
     }
-
     if (!interface_exists(MessageInterface::class)) {
-        interface MessageInterface
-        {
-        }
+        interface MessageInterface {}
     }
-
     if (!interface_exists(RequestInterface::class)) {
-        interface RequestInterface extends MessageInterface
-        {
-        }
+        interface RequestInterface extends MessageInterface {}
     }
-
     if (!interface_exists(ResponseInterface::class)) {
-        interface ResponseInterface extends MessageInterface
-        {
-        }
+        interface ResponseInterface extends MessageInterface {}
     }
-
     if (!interface_exists(ServerRequestInterface::class)) {
-        interface ServerRequestInterface extends RequestInterface
-        {
-        }
+        interface ServerRequestInterface extends RequestInterface {}
     }
-
     if (!interface_exists(StreamInterface::class)) {
-        interface StreamInterface
-        {
-        }
+        interface StreamInterface {}
     }
-
     if (!interface_exists(UploadedFileInterface::class)) {
-        interface UploadedFileInterface
-        {
-        }
+        interface UploadedFileInterface {}
     }
-
     if (!interface_exists(UriInterface::class)) {
-        interface UriInterface
-        {
-        }
+        interface UriInterface {}
     }
 }
-
 namespace Psr\Http\Server {
-
     if (!interface_exists(RequestHandlerInterface::class)) {
-        interface RequestHandlerInterface
-        {
-        }
+        interface RequestHandlerInterface {}
     }
     if (!interface_exists(MiddlewareInterface::class)) {
-        interface MiddlewareInterface
-        {
-        }
+        interface MiddlewareInterface {}
     }
-
 }
 
 namespace Psr\SimpleCache {
-
     if (!interface_exists(CacheException::class)) {
-        interface CacheException
-        {
-        }
+        interface CacheException {}
     }
     if (!interface_exists(CacheInterface::class)) {
-        interface CacheInterface
-        {
-        }
+        interface CacheInterface {}
     }
     if (!interface_exists(InvalidArgumentException::class)) {
-        interface InvalidArgumentException extends CacheException
-        {
-        }
+        interface InvalidArgumentException extends CacheException {}
     }
-
 }
 
 /**
- * Nyholm
+ * Nyholm  v1.3.2
+ * @todo Может быть конфликт в теории, хотя либа стабильная!
  */
-
-
 namespace Nyholm\Psr7 {
 
     use Psr\Http\Message\StreamInterface;
@@ -319,7 +246,6 @@ namespace Nyholm\Psr7 {
             }
         }
     }
-
     if (!trait_exists(RequestTrait::class)) {
         trait RequestTrait
         {
@@ -425,10 +351,6 @@ namespace Nyholm\Psr7 {
             }
         }
     }
-
-
-
-
     if (!class_exists(Response::class)) {
         class Response implements ResponseInterface
         {
@@ -482,7 +404,6 @@ namespace Nyholm\Psr7 {
             }
         }
     }
-
     if (!class_exists(ServerRequest::class)) {
         class ServerRequest implements ServerRequestInterface
         {
@@ -601,7 +522,6 @@ namespace Nyholm\Psr7 {
             }
         }
     }
-
     if (!class_exists(Stream::class)) {
         class Stream implements StreamInterface
         {
@@ -613,9 +533,7 @@ namespace Nyholm\Psr7 {
             private $size;
             private const READ_WRITE_HASH = ['read' => ['r' => true, 'w+' => true, 'r+' => true, 'x+' => true, 'c+' => true, 'rb' => true, 'w+b' => true, 'r+b' => true, 'x+b' => true, 'c+b' => true, 'rt' => true, 'w+t' => true, 'r+t' => true, 'x+t' => true, 'c+t' => true, 'a+' => true], 'write' => ['w' => true, 'w+' => true, 'rw' => true, 'r+' => true, 'x+' => true, 'c+' => true, 'wb' => true, 'w+b' => true, 'r+b' => true, 'x+b' => true, 'c+b' => true, 'w+t' => true, 'r+t' => true, 'x+t' => true, 'c+t' => true, 'a' => true, 'a+' => true]];
 
-            private function __construct()
-            {
-            }
+            private function __construct() {}
 
             public static function create($body = ''): StreamInterface
             {
@@ -805,7 +723,6 @@ namespace Nyholm\Psr7 {
             }
         }
     }
-
     if (!class_exists(UploadedFile::class)) {
         class UploadedFile implements UploadedFileInterface
         {
@@ -923,7 +840,6 @@ namespace Nyholm\Psr7 {
             }
         }
     }
-
     if (!class_exists(Uri::class)) {
         class Uri implements UriInterface
         {
@@ -1162,18 +1078,4 @@ namespace Nyholm\Psr7 {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
