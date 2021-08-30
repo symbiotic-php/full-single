@@ -13,7 +13,7 @@ return [
         $basePath . '/vendor', // Папка для приложений
     ],
     'bootstrappers' => [
-        \Symbiotic\Develop\Bootstrap\DebugBootstrap::class,/// debug only
+        \Symbiotic\Develop\Bootstrap\DebugBootstrap::class,/// work in debug only
         \Symbiotic\Core\Bootstrap\EventBootstrap::class,
         \Symbiotic\SimpleCacheFilesystem\Bootstrap::class,
         \Symbiotic\Packages\PackagesLoaderFilesystemBootstrap::class,
@@ -23,6 +23,7 @@ return [
         \Symbiotic\Http\Bootstrap::class,
         \Symbiotic\Http\Kernel\Bootstrap::class,
         \Symbiotic\View\Blade\Bootstrap::class,
+        \Symbiotic\Routing\SettlementsPreloadMiddlewareBootstrap::class,
     ],
     'providers' => [
         \Symbiotic\Http\Cookie\CookiesProvider::class,
