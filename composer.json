@@ -2,7 +2,7 @@
   "name": "symbiotic/full-single",
   "description": "Full Symbiotic framework in single file.",
   "license": "BSD-3-Clause",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "authors": [{
     "name": "Surkov Sergey",
     "role": "creator"
